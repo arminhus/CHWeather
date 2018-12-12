@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -11,20 +11,21 @@
 </head>
 
 <body>
-    <main id='main'>
-        <h1 class='title'>Weather App</h1>
-        <form action="" id="js-submit">
+    <main role="main" id='main'>
+        <h1 role="heading" aria-level="1" class='title'>Weather App</h1>
+        <form role="form" action="" id="js-submit">
             <!-- <label>Please enter your Zip Code: </label> -->
-            <input class="search" type="text" id="js-zip-code" placeholder='Enter Zip Code' required>
+            <input role="searchbox" aria-label="Search" class="search" type="text" id="js-zip-code" placeholder='Enter Zip Code'
+                required>
             <div class='temp-choice'>
-                <label class='temp-label'>Celsius
+                <label role="dialog" aria-labelledby="dialog" aria-checked="false" class='temp-label'>Celsius
                     <input type="radio" class="js-temp-type" name='weather-type' value="metric" required>
                 </label>
-                <label class='temp-label'>Fahrenheit
+                <label role="dialog" aria-labelledby="dialog" aria-checked="false" class='temp-label'>Fahrenheit
                     <input type="radio" class="js-temp-type" name='weather-type' value="imperial" required>
                 </label>
             </div>
-            <button id="submit-btn" type="submit">Submit</button>
+            <button role="button" id="submit-btn" type="submit">Submit</button>
         </form>
         <!-- <p>Upcoming week</p> -->
         <div id='result-main'></div>
