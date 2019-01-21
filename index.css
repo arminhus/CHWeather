@@ -7,13 +7,20 @@ body {
     background-color: #ebebeb
 }
 
-.title{
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
     margin: 10px;
     text-align: center;
     margin: 25px 0;
 }
 
-.search{
+.search {
     position: relative;
     display: block;
     border: none;
@@ -21,7 +28,7 @@ body {
     border-radius: 2px;
 }
 
-#submit-btn{
+#submit-btn {
     border: none;
     background-color: #4389aa;
     padding: 5px;
@@ -30,12 +37,13 @@ body {
     border-radius: 2px;
 }
 
-#js-submit{
+#js-submit {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 .temp-label {
     position: relative;
     display: inline-block;
@@ -44,7 +52,7 @@ body {
 }
 
 
-#js-result{
+#js-result {
     background-color: rgba(200, 200, 200, 0.3);
     display: flex;
     flex-direction: column;
@@ -57,7 +65,7 @@ body {
 
 }
 
-#temp{
+#temp {
     display: inline-block;
     font-size: 5em;
     background-color: white;
@@ -66,7 +74,7 @@ body {
     border-radius: 5px;
 }
 
-.forecast-wrap{
+.forecast-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
