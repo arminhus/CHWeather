@@ -20,18 +20,29 @@ let days = [
 
 let getCurrentData = async (zipCode, tempType) => {
   await fetch(OPEN_WEATHER_DAILY_LINK + zipCode + OPEN_WEATHER_KEY + tempType)
-    .then(res => res.json())
+    .then(res => {
+      if (res.status === 404) {
+        alert(zipCode + " is not valid, please enter a valid zip code");
+      }
+      return res.json();
+    })
     .then(dailyTemp => {
+      console.log(dailyTemp.weather[0].main);
       $("#temp").addClass("temp-active");
       $("#temp").html(`
                 <div id="js-result">
                     <p>Current</p>
-                    <p id='current'>${dailyTemp.main.temp}°</p>
+                    <div id='current'>
+                    <p id=''>${dailyTemp.main.temp}°</p>
+                    <p class='weather-text'>${dailyTemp.weather[0].main}</p>
+                    ${wConditionDisplay(dailyTemp)}
+                    </div>
                     <p>Upcoming Week</p>
                     <div id='forecast'></div>
                 </div>
             `);
-    });
+    })
+    .catch(err => console.log(err));
 };
 
 let getForcastData = async (zipCode, tempType) => {
@@ -45,11 +56,42 @@ let getForcastData = async (zipCode, tempType) => {
                     <div class='forecast-wrap'>
                         <p class='forecast-date'>${days[d.getDay()]}</p>
                         <p class='forecast-temp'>${item.main.temp}°</p>
+                        <p class='weather-text'>${item.weather[0].main}</p>
+                        ${wConditionDisplay(item)}
                     </div>
                     `);
         }
       });
     });
+};
+let wConditionDisplay = item => {
+  let imgArr = [
+    "img/cloudy.png",
+    "img/clear.png",
+    "img/rain.png",
+    "img/snow.png",
+    "img/mist.png",
+    "img/thunder.png"
+  ];
+  let weatherType = item.weather[0].main;
+  console.log(weatherType);
+  let img = img => `<img class="weather-type" src=${img} alt=${weatherType}>`;
+  switch (weatherType.toLowerCase()) {
+    case "clouds":
+      return img(imgArr[0]);
+    case "clear":
+      return img(imgArr[1]);
+    case "rain":
+      return img(imgArr[2]);
+    case "snow":
+      return img(imgArr[3]);
+    case "mist":
+      return img(imgArr[4]);
+    case "thunder":
+      return img(imgArr[5]);
+    default:
+      return null;
+  }
 };
 
 let submitEvent = () => {
