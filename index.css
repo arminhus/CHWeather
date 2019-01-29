@@ -158,11 +158,6 @@ body {
   -moz-transition: background-color 0.5s ease-out;
   -o-transition: background-color 0.5s ease-out;
   transition: background-color 0.5s ease-out;
-
-  /* -webkit-transition: color 0.3s ease-out;
-  -moz-transition: color 0.3s ease-out;
-  -o-transition: color 0.3s ease-out;
-  transition: color 0.3s ease-out; */
 }
 
 #forecast {
