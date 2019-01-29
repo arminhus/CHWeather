@@ -8,15 +8,6 @@ const OPEN_WEATHER_DAILY_LINK =
   "https://api.openweathermap.org/data/2.5/weather?zip=";
 const OPEN_WEATHER_FORCAST_LINK =
   "https://api.openweathermap.org/data/2.5/forecast?zip=";
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
 
 let getCurrentData = async (zipCode, tempType) => {
   await fetch(OPEN_WEATHER_DAILY_LINK + zipCode + OPEN_WEATHER_KEY + tempType)
@@ -27,15 +18,14 @@ let getCurrentData = async (zipCode, tempType) => {
       return res.json();
     })
     .then(dailyTemp => {
-      console.log(dailyTemp.weather[0].main);
       $("#temp").addClass("temp-active");
       $("#temp").html(`
                 <div id="js-result">
                     <p class="weather-title">Current</p>
                     <div id='current'>
-                    <p id=''>${dailyTemp.main.temp}°</p>
-                    <p class='weather-text'>${dailyTemp.weather[0].main}</p>
-                    ${wConditionDisplay(dailyTemp)}
+                      <p id=''>${dailyTemp.main.temp}°</p>
+                      <p class='weather-text'>${dailyTemp.weather[0].main}</p>
+                      ${wConditionDisplay(dailyTemp)}
                     </div>
                     <p class="weather-title">Upcoming Week</p>
                     <div id='forecast'></div>
@@ -50,11 +40,12 @@ let getForcastData = async (zipCode, tempType) => {
     .then(res => res.json())
     .then(forcastTemp => {
       forcastTemp.list.map(item => {
-        let d = new Date(item.dt_txt);
-        if (d.getHours() === 12) {
+        let hour = moment(item.dt_txt).hour();
+        let day = moment(item.dt_txt).format("dddd");
+        if (hour === 12) {
           $("#forecast").append(`
                     <div class='forecast-wrap'>
-                        <p class='forecast-date'>${days[d.getDay()]}</p>
+                        <p class='forecast-date'>${day}</p>
                         <p class='forecast-temp'>${item.main.temp}°</p>
                         <p class='weather-text'>${item.weather[0].main}</p>
                         ${wConditionDisplay(item)}
@@ -74,7 +65,6 @@ let wConditionDisplay = item => {
     "img/thunder.png"
   ];
   let weatherType = item.weather[0].main;
-  console.log(weatherType);
   let img = img => `<img class="weather-type" src=${img} alt=${weatherType}>`;
   switch (weatherType.toLowerCase()) {
     case "clouds":
@@ -87,8 +77,10 @@ let wConditionDisplay = item => {
       return img(imgArr[3]);
     case "mist":
       return img(imgArr[4]);
-    case startsWith("thunder"):
+    case "thunder":
       return img(imgArr[5]);
+    case "haze":
+      return img(imgArr[4]);
     default:
       return null;
   }
