@@ -14,6 +14,12 @@ body {
   justify-content: center;
 }
 
+#logo {
+  max-width: 213px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
 .title {
   margin: 10px;
   text-align: center;
@@ -23,15 +29,22 @@ body {
 .search {
   position: relative;
   display: block;
-  border: none;
-  padding: 5px;
-  border-radius: 2px;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
 }
 
 #js-zip-code {
   width: 100%;
-  border: none;
-  outline: none;
+  border-color: #4389aa;
+  border-width: 1px;
+}
+
+#js-zip-code:hover {
+  border-color: #5bbeed;
+  border-width: 1.2px;
+  box-shadow: 2px 2px 10px #888888;
 }
 
 #submit-btn {
@@ -42,9 +55,17 @@ body {
   color: white;
   font-weight: bold;
   border-radius: 2px;
+  margin-bottom: 20px;
 }
+
 #submit-btn:hover {
+  box-shadow: 2px 2px 10px #888888;
   background-color: #5bbeed;
+  cursor: pointer;
+  -webkit-transition: background-color 0.3s ease-out;
+  -moz-transition: background-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out;
 }
 
 #js-submit {
@@ -61,6 +82,15 @@ body {
   margin: 5px;
 }
 
+.temp-label:hover {
+  color: #5bbeed;
+  cursor: pointer;
+  -webkit-transition: color 0.3s ease-out;
+  -moz-transition: color 0.3s ease-out;
+  -o-transition: color 0.3s ease-out;
+  transition: color 0.3s ease-out;
+}
+
 #js-result {
   background-color: rgba(200, 200, 200, 0.3);
   display: flex;
@@ -75,6 +105,7 @@ body {
 
 #temp {
   display: inline-block;
+  box-shadow: 2px 2px 10px #888888;
 }
 
 #current {
@@ -118,7 +149,7 @@ body {
 
 .forecast-wrap:hover,
 #current:hover {
-  background-color: lightblue;
+  background-color: #5bbeed;
   box-shadow: 2px 2px 10px #888888;
 }
 

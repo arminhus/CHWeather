@@ -31,13 +31,13 @@ let getCurrentData = async (zipCode, tempType) => {
       $("#temp").addClass("temp-active");
       $("#temp").html(`
                 <div id="js-result">
-                    <p>Current</p>
+                    <p class="weather-title">Current</p>
                     <div id='current'>
                     <p id=''>${dailyTemp.main.temp}°</p>
                     <p class='weather-text'>${dailyTemp.weather[0].main}</p>
                     ${wConditionDisplay(dailyTemp)}
                     </div>
-                    <p>Upcoming Week</p>
+                    <p class="weather-title">Upcoming Week</p>
                     <div id='forecast'></div>
                 </div>
             `);
@@ -87,7 +87,7 @@ let wConditionDisplay = item => {
       return img(imgArr[3]);
     case "mist":
       return img(imgArr[4]);
-    case "thunder":
+    case startsWith("thunder"):
       return img(imgArr[5]);
     default:
       return null;
